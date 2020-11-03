@@ -3,7 +3,7 @@ import React, { useState } from 'react';
     const UserForm = (props) => {
 
         const {inputs,handleChange,handleSubmit} = props;
-
+        
         /*const [firstName, setFirstName] = useState("");
         const [lastName, setLastName] = useState("");
         const [email, setEmail] = useState("");
@@ -34,11 +34,14 @@ import React, { useState } from 'react';
         }
 
     } */
-
-    
     return(
         <>
         <form className="col-3 mx-auto my-5" onSubmit={ handleSubmit }>
+        {
+        inputs.hasBeenSubmitted ? 
+        <h3>Thank you for submitting the form!</h3> :
+        <h3>Welcome, please submit the form.</h3> 
+        }
             <div className="form-group" >
                 <label>First Name:</label>
                 <input 
@@ -48,6 +51,9 @@ import React, { useState } from 'react';
                     name="firstName"
                     onChange={handleChange}
                 />
+                <span className="text-danger">
+                { inputs.firstName.length > 2 ? "" : "First Name must be 2 Characters."}
+                </span>
             </div>
             
             <div className="form-group">
@@ -59,6 +65,9 @@ import React, { useState } from 'react';
                     name="lastName"
                     onChange={handleChange}
                 />
+                <span className="text-danger">
+                { inputs.lastName.length > 2 ? "" : "Last Name must be 2 Characters."}
+                </span>
             </div>
             
             <div className="form-group" >
@@ -70,6 +79,9 @@ import React, { useState } from 'react';
                     value={inputs.email}
                     onChange={handleChange}
                 />
+                <span className="text-danger">
+                { inputs.email.length > 2 ? "" : "Email must be 2 Characters."}
+                </span>
             </div>
 
             <div className="form-group" >
@@ -81,6 +93,9 @@ import React, { useState } from 'react';
                     value={inputs.password }
                     onChange={handleChange} 
                 />
+                <span className="text-danger">
+                { inputs.password.length >= 8 ? "" : "Password must be 8 Characters."}
+                </span>
             </div>
             
             <div className="form-group" >
@@ -92,6 +107,9 @@ import React, { useState } from 'react';
                     value={inputs.confirmPassword }
                     onChange={handleChange} 
                 />
+                <span className="text-danger">
+                { inputs.password === inputs.confirmPassword ? "" : "Passwords must match"}
+                </span>
             </div>
             <input type="submit" value="createUser" ></input>
         </form>

@@ -12,7 +12,6 @@ function App() {
   const [confirmPassword, setConfirmPassword] = useState("");
   you dont need this because of line 14-20 and 22-27
   */  
- //const [hasBeenSubmitted, setHasBeenSubmitted] = useState(false);
 
   const [user, setUser] = useState({
     firstName:"",
@@ -20,10 +19,10 @@ function App() {
     email:"",
     password:"",
     confirmPassword:"",
-    hasBeenSubmitted: false,
+    hasBeenSubmitted:false
   })
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     setUser({
@@ -31,7 +30,8 @@ function App() {
       lastName:"",
       email:"",
       password:"",
-      confirmPassword:""
+      confirmPassword:"",
+      hasBeenSubmitted:true
 
     })
   }
@@ -51,6 +51,7 @@ function App() {
           inputs={user}
           handleChange={handleUserChange}
           handleSubmit={handleSubmit}
+        
         />
         <ShowUser
           user={user}
